@@ -1,4 +1,3 @@
-#include "Adafruit_SSD1306.h"
 #include "Arduino.h"
 #include "HardwareSerial.h"
 #include "Wire.h"
@@ -14,10 +13,6 @@
 #define LED_YELLOW 18
 #define LED_GREEN 5
 
-// #define OLED_WIDTH 128
-// #define OLED_HEIGHT 64
-// #define OLED_ADDRESS 0x3C
-
 // Ambang batas (Threshold)
 const float DISTANCE_EMPTY = 15.0; // Jarak ultrasonik saat air mau habis (cm)
 const float TDS_DIRTY = 300.0;     // Batas TDS air mulai kotor (PPM)
@@ -30,28 +25,14 @@ const int BUZZER_BIT = 8;
 // Offset kalibrasi TDS (sesuaikan jika perlu)
 float tdsOffset = 0.0;
 
-// Adafruit_SSD1306 oled(OLED_WIDTH, OLED_HEIGHT, &Wire, -1);
 
 void bunyikanBuzzer(int jumlahBip, int durasiMs);
 void nyalakanLed(char tipeLed);
-// void tampilkanOLED(float distance, int rawADC, float voltage, float tdsValue,
-//                    const char *status);
 
 void setup() {
   Serial.begin(115200);
   Wire.begin(26, 25);
   // Wire.begin()
-
-  // Serial.println("OLED initialization failed!");
-  // if (!oled.begin(SSD1306_SWITCHCAPVCC, OLED_ADDRESS)) {
-  //   Serial.println("OLED initialization failed!");
-  //   while (true) {
-  //     delay(100);
-  //   }
-  // }
-  //
-  // oled.clearDisplay();
-  // oled.display();
 
   // Konfigurasi Pin
   pinMode(TRIG_PIN, OUTPUT);
@@ -151,8 +132,6 @@ void loop() {
   Serial.print(status);
   Serial.println();
 
-  // tampilkanOLED(distance, rawADC, voltage, tdsValue, status);
-
   delay(1000); // Update data setiap 1 detik
 }
 
@@ -176,34 +155,3 @@ void nyalakanLed(char tipeLed) {
   digitalWrite(LED_YELLOW, tipeLed == 'y' ? HIGH : LOW);
   digitalWrite(LED_GREEN, tipeLed == 'g' ? HIGH : LOW);
 }
-
-// void tampilkanOLED(float distance, int rawADC, float voltage, float tdsValue,
-//                    const char *status) {
-//   oled.clearDisplay();
-//   oled.setTextSize(1);
-//   oled.setTextColor(SSD1306_WHITE);
-//   oled.setCursor(0, 0);
-//
-//   oled.println("SMART PET FOUNTAIN");
-//   oled.println("--------------------");
-//
-//   oled.print("Jarak Air: ");
-//   oled.print(distance, 1);
-//   oled.println(" cm");
-//
-//   oled.print("ADC TDS: ");
-//   oled.println(rawADC);
-//
-//   oled.print("Voltage: ");
-//   oled.print(voltage, 2);
-//   oled.println(" V");
-//
-//   oled.print("TDS: ");
-//   oled.print(tdsValue, 1);
-//   oled.println(" ppm");
-//
-//   oled.print("Status: ");
-//   oled.println(status);
-//
-//   oled.display();
-// }
