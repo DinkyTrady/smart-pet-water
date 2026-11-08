@@ -11,7 +11,6 @@ status LEDs, an active buzzer driven by LEDC PWM, and serial telemetry.
 - **Analog TDS Sensor** (e.g., Gravity Analog TDS Sensor)
 - **Status LEDs**: Red, Yellow, Green (with 220Ω - 330Ω resistors)
 - **Passive/Active Buzzer**
-- **0.96" SSD1306 I2C OLED Display** (128x64, optional/prepared)
 - 5V / 3.3V power source and breadboard wiring
 
 ## Pin Mapping
@@ -25,7 +24,6 @@ status LEDs, an active buzzer driven by LEDC PWM, and serial telemetry.
 | Status LED   | Yellow (`LED_YELLOW`)  | GPIO 18      | Low-water warning indicator                                |
 | Status LED   | Green (`LED_GREEN`)    | GPIO 5       | Normal operation indicator                                 |
 | Buzzer       | PWM Pin (`BUZZER_PIN`) | GPIO 21      | LEDC Channel 0, 2000 Hz, 8-bit resolution                  |
-| SSD1306 OLED | SDA / SCL              | GPIO 26 / 25 | I2C bus (`Wire.begin(26, 25)`)                             |
 
 ## System Logic and Alert Thresholds
 
@@ -61,8 +59,6 @@ Built with [PlatformIO](https://platformio.org/) using the Arduino framework for
 Required libraries specified in `platformio.ini`:
 
 - `DFRobot/GravityTDS`
-- `adafruit/Adafruit SSD1306`
-- `adafruit/Adafruit GFX Library`
 
 ## Build and Flash
 
