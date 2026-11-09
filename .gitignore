@@ -2,3 +2,4 @@
 .pioenvs
 .piolibdeps
 compile_commands.json
+include/config.h
